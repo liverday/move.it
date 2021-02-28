@@ -7,15 +7,15 @@
 :root {
     --white: #fff;
     --background: #f2f3f5;
-    --gray-line: #dcdde0;
+    --grayLine: #dcdde0;
     --text: #666;
-    --text-highlight: #b3b9ff;
+    --textHighlight: #b3b9ff;
     --title: #2e384d;
     --red: #e83f5b;
     --green: #4cd62b;
     --blue: #5965e0;
-    --blue-dark: #4953b8;
-    --blue-twitter: #2AA9E0;
+    --blueDark: #4953b8;
+    --blueTwitter: #2AA9E0;
 }
 
 @media(max-width: 1080px) {

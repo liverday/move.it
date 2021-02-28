@@ -15,6 +15,8 @@ import styles from '../styles/pages/Home.module.css';
 import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
+import 'react-toggle/style.css';
+
 interface HomeProps {
   level: number;
   currentExperience: number;

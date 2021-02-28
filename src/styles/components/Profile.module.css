@@ -9,21 +9,28 @@
     border-radius: 50%;
 }
 
-.profileContainer div {
+.profileContainer > div {
     margin-left: 1.5rem;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
 }
 
-.profileCOntainer div strong {
+.profileContainer > div > header strong {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--title);
 }
 
-.profileContainer div p {
+.profileContainer > div > header p {
     font-size: 1rem;
     margin-top: 0.5rem;
 }
 
-.profileContainer div p img {
+.profileContainer > div > header p img {
     margin-right: 0.5rem;
+}
+
+.themeSwitcher {
+    margin-top: 0.25rem;
 }

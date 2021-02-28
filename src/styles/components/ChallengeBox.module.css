@@ -51,7 +51,7 @@
     font-weight: 600;
     font-size: 1.25rem;
     padding: 0 2rem 1.5rem;
-    border-bottom: 1px solid var(--gray-line);
+    border-bottom: 1px solid var(--grayLine);
 }
 
 .challengeActive main {

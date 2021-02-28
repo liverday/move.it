@@ -4,7 +4,9 @@ import { useCountdown } from '../../contexts/CountdownContext';
 import styles from '../../styles/components/Countdown.module.css';
 
 const Countdown: React.FC = () => {
-    const { 
+    const {
+        time,
+        challengeTime,
         minutes, 
         seconds, 
         isActive, 
@@ -15,6 +17,8 @@ const Countdown: React.FC = () => {
 
     const [minuteLeft, minuteRight] = minutes.toString().padStart(2, '0').split('');
     const [secondLeft, secondRight] = seconds.toString().padStart(2, '0').split('');
+
+    const timeProgressPercentage = 100 - (Math.round(time * 100) / challengeTime);
 
     return (
         <div>
@@ -39,10 +43,13 @@ const Countdown: React.FC = () => {
                     {isActive ? (
                         <button type="button" className={`${styles.countdownButton} ${styles.countdownButtonActive}`} onClick={resetCountdown}>
                             Abandonar ciclo
+
+                            <div className={styles.countdownProgressBar} />
+                            <div className={styles.countdownProgressBarTrack} style={{ width: `${timeProgressPercentage}%` }} />
                         </button>
                     ) : (
                         <button type="button" className={styles.countdownButton} onClick={startCountdown}>
-                            Iniciar um ciclo <img src="icons/play_arrow.svg" alt="Play Arrow" />
+                            Iniciar um ciclo
                         </button>
                     )}
                 </>

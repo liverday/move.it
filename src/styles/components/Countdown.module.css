@@ -25,11 +25,11 @@
 }
 
 .countdownContainer > div span:first-child {
-    border-right: 1px solid #f0f1f3;
+    border-right: 1px solid var(--grayLineDark);
 }
 
 .countdownContainer > div span:last-child {
-    border-left: 1px solid #f0f1f3;
+    border-left: 1px solid var(--grayLineDark);
 }
 
 .countdownContainer > span {
@@ -65,14 +65,30 @@
 
 
 .countdownButton:not(:disabled):hover {
-    background: var(--blue-dark);
+    background: var(--blueDark);
 }
 
 .countdownButtonActive {
     background : var(--white);
     color: var(--title);
 
-    border-bottom: 4px solid var(--red);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdownProgressBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 4px solid var(--grayLine);
+}
+
+.countdownProgressBarTrack {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 4px solid var(--green);
+    transition: width 0.2s;
 }
 
 .countdownButtonActive img {
