@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useCallback, useState, useContext } from 'react';
 
+import Cookies from 'js-cookie';
+
 import { Theme, themes } from '../styles/theme';
 
 type ThemeOptions = 'light' | 'dark';
@@ -12,8 +14,12 @@ interface ThemeContextData {
 
 const ThemeContext = createContext({} as ThemeContextData);
 
-export const ThemeProvider: React.FC = ({ children }) => {
-    const [themeName, setThemeName] = useState<ThemeOptions>('light');
+interface ThemeProviderProps {
+    themeName: ThemeOptions;
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...rest }) => {
+    const [themeName, setThemeName] = useState<ThemeOptions>(rest.themeName || 'light');
 
     const toggleTheme = useCallback(() => {
         setThemeName(themeName === 'dark' ? 'light' : 'dark');
@@ -22,10 +28,10 @@ export const ThemeProvider: React.FC = ({ children }) => {
     const theme = themes[themeName];
 
     useEffect(() => {
-
         Object.keys(theme).forEach(key => {
             document.documentElement.style.setProperty(`--${key}`, theme[key]);
         })
+        Cookies.set('theme', themeName);
     }, [themeName]);
 
     return (

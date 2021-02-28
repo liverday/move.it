@@ -4,7 +4,7 @@ import { ThemeProvider } from '../contexts/ThemeContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider>
+    <ThemeProvider themeName={pageProps.theme}>
       <Component {...pageProps} />
     </ThemeProvider>
   )

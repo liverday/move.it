@@ -56,7 +56,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const {
     level,
     currentExperience,
-    challengesCompleted
+    challengesCompleted,
+    theme
   } = ctx.req.cookies;
 
   return {
@@ -64,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
+      theme,
     }
   }
 }
