@@ -1,9 +1,10 @@
+import { useSession } from 'next-auth/client';
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-
-import Cookies from 'js-cookie';
 
 import challenges from '../../challenges.json';
 import LevelUpModal from '../components/LevelUpModal';
+
+import api from '../services/api';
 
 interface Challenge {
     type: 'body' | 'eye';
@@ -36,6 +37,7 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     children,
     ...rest
 }) => {
+    const [session] = useSession();
     const [level, setLevel] = useState(rest.level || 1);
     const [currentExperience, setCurrentExperience] = useState(rest.currentExperience || 0);
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted || 0);
@@ -50,9 +52,17 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     }, []);
 
     useEffect(() => {
-        Cookies.set('level', String(level));
-        Cookies.set('currentExperience', String(currentExperience));
-        Cookies.set('challengesCompleted', String(challengesCompleted));
+        async function storeData() {
+            await api.put(`/api/user/${session.id}`, {
+                level,
+                currentExperience,
+                challengesCompleted,
+            });
+        }
+
+        if (session) {
+            storeData();
+        }
     }, [level, currentExperience, challengesCompleted]);
     
     const levelUp = useCallback(() => {

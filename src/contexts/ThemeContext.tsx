@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 import { Theme, themes } from '../styles/theme';
 
-type ThemeOptions = 'light' | 'dark';
+export type ThemeOptions = 'light' | 'dark';
 
 interface ThemeContextData {
     theme: Theme;

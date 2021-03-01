@@ -7,17 +7,22 @@ import { useTheme } from '../../contexts/ThemeContext';
 
 import styles from '../../styles/components/Profile.module.css';
 
+import { useSession } from 'next-auth/client';
+
 
 const Profile: React.FC = () => {
     const { level } = useChallenges();
     const { theme, themeName, toggleTheme } = useTheme();
+    const [session] = useSession();
+
+    const { image, name } = session.user;
 
     return (
         <div className={styles.profileContainer}>
-            <img src="https://github.com/liverday.png" alt="Vitor Medeiro" />
+            <img src={image} alt="Vitor Medeiro" />
             <div>
                 <header>
-                    <strong>Vitor Medeiro</strong>
+                    <strong>{name}</strong>
                     <p><img src="icons/level.svg" alt="Level Up Icon" />Level {level}</p>
                 </header>
                 <ReactSwitch

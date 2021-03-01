@@ -37,7 +37,7 @@ export const themes: { [key: string]: Theme } = {
         grayLine: '#333',
         grayLineDark: '#151515',
         text: '#fdfdfd',
-        textHighlight: '#b3b9ff',
+        textHighlight: '#c8ccfe',
         title: '#fff',
         red: '#ee788c',
         green: '#6fde55',

@@ -1,19 +1,21 @@
 import React from 'react';
-
+import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
+import { getSession } from 'next-auth/client';
+import { ObjectId } from 'mongodb';
 
 import ExperienceBar from "../components/ExperienceBar";
 import Profile from '../components/Profile';
 import CompletedChallenges from '../components/CompletedChallenges';
 import Countdown from '../components/Countdown';
 import ChallengeBox from '../components/ChallengeBox';
-
+import withAuth from '../hoc/withAuth';
+import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
 
 import styles from '../styles/pages/Home.module.css';
+import { getDatabase } from '../utils/database';
 
-import { GetServerSideProps } from 'next';
-import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 interface HomeProps {
   level: number;
@@ -21,7 +23,7 @@ interface HomeProps {
   challengesCompleted: number;
 }
 
-export default function Home({ level, currentExperience, challengesCompleted }: HomeProps) {
+const Home: NextPage<HomeProps> = ({ level, currentExperience, challengesCompleted }) => {
   return (
     <ChallengesProvider 
       level={level} 
@@ -51,21 +53,29 @@ export default function Home({ level, currentExperience, challengesCompleted }: 
   )
 }
 
+export default withAuth(Home);
+
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+  const {
+    theme
+  } = ctx.req.cookies;
+
+  const { id } = await getSession({ req: ctx.req });
+  const database = await getDatabase();
 
   const {
     level,
     currentExperience,
     challengesCompleted,
-    theme
-  } = ctx.req.cookies;
+  } = await database.collection('users').findOne({ _id: new ObjectId(id) });
 
   return {
     props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
       theme,
+      level,
+      currentExperience,
+      challengesCompleted
     }
   }
 }

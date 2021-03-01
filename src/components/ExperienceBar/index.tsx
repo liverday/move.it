@@ -13,7 +13,7 @@ const ExperienceBar: React.FC = () => {
     setTimeout(() => {
       setPercentToNextLevel(Math.round(currentExperience * 100) / experienceToNextLevel);
     }, 100)
-  }, [])
+  }, [currentExperience, experienceToNextLevel]);
 
   return (
       <header className={styles.experienceBar}>
