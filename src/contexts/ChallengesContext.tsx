@@ -17,6 +17,7 @@ interface ChallengesContextData {
     currentExperience: number;
     experienceToNextLevel: number;
     challengesCompleted: number;
+    accumulatedExperience: number;
     levelUp(): void;
     activeChallenge: Challenge;
     startNewChallenge(): void;
@@ -25,15 +26,16 @@ interface ChallengesContextData {
     closeLevelUpModal(): void;
 }
 
-export const ChallengesContext = createContext({ } as ChallengesContextData);
+export const ChallengesContext = createContext({} as ChallengesContextData);
 
 interface ChallengesProviderProps {
     level: number;
     currentExperience: number;
     challengesCompleted: number;
-  }
+    accumulatedExperience: number;
+}
 
-export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({ 
+export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     children,
     ...rest
 }) => {
@@ -41,6 +43,7 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     const [level, setLevel] = useState(rest.level || 1);
     const [currentExperience, setCurrentExperience] = useState(rest.currentExperience || 0);
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted || 0);
+    const [accumulatedExperience, setAccumulatedExperience] = useState(rest.accumulatedExperience || 0);
 
     const [activeChallenge, setActiveChallenge] = useState<Challenge | null>(null);
     const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
@@ -57,14 +60,15 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
                 level,
                 currentExperience,
                 challengesCompleted,
+                accumulatedExperience
             });
         }
 
         if (session) {
             storeData();
         }
-    }, [level, currentExperience, challengesCompleted]);
-    
+    }, [level, currentExperience, challengesCompleted, accumulatedExperience]);
+
     const levelUp = useCallback(() => {
         setLevel(level + 1);
         setIsLevelUpModalOpen(true);
@@ -78,20 +82,24 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
 
         new Audio('/notification.mp3').play();
 
-        if (Notification.permission === 'granted') {
-            new Notification('Novo desafio 🎉', {
-                body: `Valendo ${challenge.amount} xp`, 
-            });
+        if ('Notification' in window) {
+
+            if (Notification.permission === 'granted') {
+                new Notification('Novo desafio 🎉', {
+                    icon: '/favicon.png',
+                    body: `Valendo ${challenge.amount} xp`,
+                });
+            }
         }
     }, []);
 
-    const completeChallenge = useCallback(() => {
+    const completeChallenge = useCallback(async () => {
         if (!activeChallenge) return;
 
         const { amount } = activeChallenge;
-        
+
         let finalExperience = currentExperience + amount;
-        
+
         if (finalExperience >= experienceToNextLevel) {
             finalExperience = finalExperience - experienceToNextLevel;
             levelUp();
@@ -99,6 +107,7 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
 
         setCurrentExperience(finalExperience);
         setActiveChallenge(null);
+        setAccumulatedExperience(accumulatedExperience + amount);
         setChallengesCompleted(challengesCompleted + 1);
     }, [challengesCompleted, activeChallenge]);
 
@@ -111,11 +120,12 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     }, []);
 
     return (
-        <ChallengesContext.Provider value={{ 
-            level, 
-            currentExperience, 
+        <ChallengesContext.Provider value={{
+            level,
+            currentExperience,
             experienceToNextLevel,
-            challengesCompleted, 
+            challengesCompleted,
+            accumulatedExperience,
             levelUp,
             activeChallenge,
             startNewChallenge,

@@ -39,7 +39,7 @@ const Login: NextPage= () => {
                     onClick={signIn}
                 >
                     Login com GitHub 
-                    <AiFillGithub color={theme.text} />
+                    <AiFillGithub />
                 </button>
             </section>
         </div>

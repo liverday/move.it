@@ -7,15 +7,6 @@
     padding: 5rem 0;
 }
 
-@media (max-width: 1000px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-
-    .backgroundContainer {
-        display: none;
-    }
-}
 .formContainer {
     display: flex;
     flex-flow: column nowrap;
@@ -55,6 +46,20 @@
 @media (max-width: 500px) {
     .formContainer img {
         width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .formContainer {
+        padding: 5rem;
+    }
+
+    .backgroundContainer {
+        display: none;
     }
 }
 

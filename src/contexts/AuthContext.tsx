@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ session, children })
     }, []);
 
     const signOut = useCallback(() => {
-        handleOAuthLogout();
+        handleOAuthLogout({ callbackUrl: process.env.NEXTAUTH_URL});
     }, [])
 
     return (

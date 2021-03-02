@@ -31,6 +31,11 @@
     margin-right: 0.5rem;
 }
 
+
+.profileContainer > div > header p  span {
+    color: var(--blue);
+}
+
 .themeSwitcher {
     margin-top: 0.25rem;
 }

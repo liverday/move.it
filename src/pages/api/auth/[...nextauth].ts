@@ -20,7 +20,7 @@ const options = {
             return Promise.resolve(session);
         },
         redirect: (_: string, _2: string) => {
-            return Promise.resolve(process.env.NEXT_URL as string)
+            return Promise.resolve(process.env.NEXTAUTH_URL as string)
         }
     },
     database: process.env.DATABASE_URL,

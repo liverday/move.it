@@ -13,21 +13,27 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             level,
             currentExperience,
             challengesCompleted,
+            accumulatedExperience,
         } = req.body;
 
         await database.collection('users').updateOne({ _id: new ObjectId(id as any) }, {
             $set: {
                 level,
                 currentExperience,
-                challengesCompleted
+                challengesCompleted,
+                accumulatedExperience
             }
         });
 
         res.json(true);
     } else {
-        const { id } = await getSession({ req });
+        const session = await getSession({ req });
 
-        const user = await database.collection('users').findOne({ _id: new ObjectId(id) });
+        if (!session) {
+            return res.status(401);
+        }
+
+        const user = await database.collection('users').findOne({ _id: new ObjectId(session.id) });
 
         return res.json(user);
     }

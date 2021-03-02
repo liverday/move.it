@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/client';
 
 
 const Profile: React.FC = () => {
-    const { level } = useChallenges();
+    const { level, accumulatedExperience } = useChallenges();
     const { theme, themeName, toggleTheme } = useTheme();
     const [session] = useSession();
 
@@ -19,11 +19,12 @@ const Profile: React.FC = () => {
 
     return (
         <div className={styles.profileContainer}>
-            <img src={image} alt="Vitor Medeiro" />
+            <img src={image} alt={name} />
             <div>
                 <header>
                     <strong>{name}</strong>
                     <p><img src="icons/level.svg" alt="Level Up Icon" />Level {level}</p>
+                    <p><span>{accumulatedExperience}</span> xp</p>
                 </header>
                 <ReactSwitch
                     checked={themeName === 'dark'}
