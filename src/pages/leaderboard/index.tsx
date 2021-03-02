@@ -56,16 +56,16 @@ const LeaderBoard: NextPage<LeaderBoardProps> = ({ users }) => {
                                                 <div>
                                                     <strong>{user.name}</strong>
                                                     <span>
-                                                        <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level}
+                                                        <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
                                                     </span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p><strong>{user.challengesCompleted}</strong> completados</p>
+                                            <p><strong>{user.challengesCompleted || 0}</strong> completados</p>
                                         </td>
                                         <td>
-                                            <p><strong>{user.accumulatedExperience}</strong> xp</p>
+                                            <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
                                         </td>
                                     </tr>
                                 ))}
