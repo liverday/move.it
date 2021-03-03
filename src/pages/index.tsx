@@ -81,6 +81,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const user = await database.collection('users').findOne({ _id: new ObjectId(session.id) });
 
+  if (!user) {
+    return {
+      props: {}
+    }
+  }
+
   const {
     level = null,
     currentExperience = null,

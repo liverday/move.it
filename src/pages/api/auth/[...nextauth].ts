@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import NextAuth, { InitOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
-const options: InitOptions = {
+const options = {
     providers: [
         Providers.GitHub({
             clientId: process.env.GITHUB_ID,
@@ -11,18 +11,24 @@ const options: InitOptions = {
     ],
     callbacks: {
         signIn: (user: any, session: any) => {
-            session.id = user.id;
             return Promise.resolve(session);
         },
-        session: (session: any, user: any) => {
-            session.id = user.id
+        session: (session, user) => {
+            session.id = user.sub
             return Promise.resolve(session);
+        },
+        jwt: (token, user, account, profile, isNewUser) => {
+            return Promise.resolve(token);
         },
         redirect: (_: string, _2: string) => {
             return Promise.resolve(process.env.NEXTAUTH_URL as string)
         }
     },
+    secret: process.env.SECRET,
     debug: true,
+    session: {
+        jwt: true
+    },
     database: process.env.DATABASE_URL,
 };
 
