@@ -14,7 +14,19 @@
     flex: 1;
     
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
     align-content: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        overflow: auto;
+    }
+
+    .container section {
+        grid-template-rows: 1fr auto;
+        grid-template-columns: unset;
+        gap: 2rem;
+    }
 }

@@ -10,11 +10,8 @@
 .container header {
     padding: 2rem 0 0;
     color: var(--blue);
-}
-
-.container header svg {
-    width: 3rem;
-    height: 2.625rem;
+    width: 100%;
+    text-align: center;
 }
 
 .container main {
@@ -50,13 +47,45 @@
 }
 
 .container footer {
-    color: var(--text);
-    opacity: 0.5;
-    transition: color 0.2s;
     padding-bottom: 2rem;
 }
 
-.container footer:hover {
+.container footer a {
+    color: var(--text);
+    opacity: 0.5;
+    transition: color 0.2s;
+}
+
+.container footer a svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.container footer a:hover {
     cursor: pointer;
     color: var(--blue);
+}
+
+.container header svg, .container main a svg, .container footer a svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        width: 4rem;
+    }
+
+    .container header {
+        padding-top: 1rem;
+    }
+
+    .container footer {
+        padding-bottom: 1rem;
+    }
+
+    .container header svg, .container main a svg, .container footer a svg {
+        width: 2rem;
+        height: 2rem;
+    }
 }

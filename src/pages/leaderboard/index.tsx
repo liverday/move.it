@@ -7,6 +7,7 @@ import SideBar from '../../components/SideBar';
 
 import styles from '../../styles/pages/LeaderBoard.module.css'
 import { getDatabase } from '../../utils/database';
+import { GreaterThanTablet, IsMobile } from '../../hoc/responsive';
 
 interface LeaderBoardProps {
     users: {
@@ -34,44 +35,70 @@ const LeaderBoard: NextPage<LeaderBoardProps> = ({ users }) => {
                 <div className={styles.container}>
                     <header>Leaderboard</header>
 
-                    <div className={styles.wrapper}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Posição</th>
-                                    <th style={{ width: '100%' }}>Usuário</th>
-                                    <th>Desafios</th>
-                                    <th>Experiência</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((user, index) => (
-                                    <tr key={user._id + `${index}`}>
-                                        <td>
-                                            {index + 1}
-                                        </td>
-                                        <td style={{ width: '100%' }}>
-                                            <div className={styles.userInfoContainer}>
-                                                <img src={user.image} alt={user.name} />
-                                                <div>
-                                                    <strong>{user.name}</strong>
-                                                    <span>
-                                                        <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p><strong>{user.challengesCompleted || 0}</strong> completados</p>
-                                        </td>
-                                        <td>
-                                            <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
-                                        </td>
+                    <GreaterThanTablet>
+                        <div className={styles.wrapper}>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Posição</th>
+                                        <th style={{ width: '100%' }}>Usuário</th>
+                                        <th>Desafios</th>
+                                        <th>Experiência</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {users.map((user, index) => (
+                                        <tr key={user._id + `-${index}`}>
+                                            <td>
+                                                {index + 1}
+                                            </td>
+                                            <td style={{ width: '100%' }}>
+                                                <div className={styles.userInfoContainer}>
+                                                    <img src={user.image} alt={user.name} />
+                                                    <div>
+                                                        <strong>{user.name}</strong>
+                                                        <span>
+                                                            <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p><strong>{user.challengesCompleted || 0}</strong> completados</p>
+                                            </td>
+                                            <td>
+                                                <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </GreaterThanTablet>
+                    <IsMobile>
+                        <section className={styles.cardsContainer}>
+                            {users.map((user, index) => (
+                                <div key={user._id + `-${index}`}>
+                                    <header>
+                                        <strong>{index + 1}</strong>
+                                    </header>
+                                    <div className={styles.userInfoContainer}>
+                                        <img src={user.image} alt={user.name} />
+                                        <div>
+                                            <strong>{user.name}</strong>
+                                            <span>
+                                                <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <p><strong>{user.challengesCompleted || 0}</strong> completados</p>
+                                        <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
+                                    </footer>
+                                </div>
+                            ))}
+                        </section>
+                    </IsMobile>
                 </div>
             </Layout>
         </>

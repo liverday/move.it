@@ -10,7 +10,7 @@
     flex: 1;
 }
 
-.container header {
+.container > header {
     font-size: 2.25rem;
     font-weight: 600;
     line-height: 2.87rem;
@@ -107,4 +107,60 @@
     width: 1rem;
     height: 1rem;
     margin-right: 0.5rem;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+    overflow: auto;
+    margin-top: 3.125rem;
+    padding-right: 0.75rem;
+}
+
+.cardsContainer > div + div {
+    margin-top: 0.75rem;
+}
+
+.cardsContainer > div {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: var(--white);
+}
+
+.cardsContainer > div header {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+@media (max-width: 767px) {
+    .userInfoContainer {
+        margin-top: 1.5rem;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+
+    .userInfoContainer > div {
+        margin-left: 0;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .cardsContainer > div footer {
+        border-top: 1px solid var(--grayLine);
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .cardsContainer > div footer strong {
+        color: var(--blue);
+    }
+
+    .cardsContainer > div footer p + p {
+        margin-top: 0.5rem;
+    }
 }

@@ -7,6 +7,11 @@
     padding: 5rem 0;
 }
 
+.backgroundContainer {
+    background: url('/background-home.svg') no-repeat;
+    background-size: contain;
+}
+
 .formContainer {
     display: flex;
     flex-flow: column nowrap;
@@ -55,7 +60,7 @@
     }
 
     .formContainer {
-        padding: 5rem;
+        padding: 3rem;
     }
 
     .backgroundContainer {
@@ -72,8 +77,8 @@
     border-radius: 5px;
     color: #fff;
     font-weight: 600;
-    padding: 1.4rem 0;
-    width: 30rem;
+    padding: 1.4rem 1rem;
+    max-width: 30rem;
     transition: filter 0.2s;
 }
 

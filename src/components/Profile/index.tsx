@@ -28,9 +28,9 @@ const Profile: React.FC = () => {
                 </header>
                 <ReactSwitch
                     checked={themeName === 'dark'}
-                    height={15}
-                    width={50}
-                    handleDiameter={20}
+                    height={10}
+                    width={40}
+                    handleDiameter={10}
                     onChange={toggleTheme}
                     className={styles.themeSwitcher}
                     onColor={theme.blue}

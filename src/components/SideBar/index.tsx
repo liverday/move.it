@@ -8,6 +8,8 @@ import Logo from '../../assets/logo-base.svg';
 
 import styles from '../../styles/components/SideBar.module.css';
 
+import { AiFillGithub } from 'react-icons/ai';
+
 const SideBar: React.FC = () => {
     const { asPath } = useRouter();
 
@@ -28,7 +30,11 @@ const SideBar: React.FC = () => {
                     </a>
                 </Link>
             </main>
-            <footer />
+            <footer>
+                <a href="https://github.com/liverday/move.it" target="_blank">
+                    <AiFillGithub />
+                </a>
+            </footer>
         </div>
     );
 }

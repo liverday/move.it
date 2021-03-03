@@ -19,9 +19,7 @@ const Login: NextPage= () => {
             <Head>
                 <title>Login | move.it</title>
             </Head>
-            <section className={styles.backgroundContainer}>
-                <img src="/background-home.svg" />
-            </section>
+            <section className={styles.backgroundContainer} />
             <section className={styles.formContainer}>
                 <img src="/logo-home-light.svg" alt="logo" />
 
