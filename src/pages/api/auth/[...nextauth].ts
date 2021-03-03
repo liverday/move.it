@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import NextAuth from 'next-auth';
+import NextAuth, { InitOptions } from 'next-auth';
 import Providers from 'next-auth/providers';
 
-const options = {
-    site: process.env.NEXT_URL,
+const options: InitOptions = {
     providers: [
         Providers.GitHub({
             clientId: process.env.GITHUB_ID,
@@ -23,6 +22,7 @@ const options = {
             return Promise.resolve(process.env.NEXTAUTH_URL as string)
         }
     },
+    debug: true,
     database: process.env.DATABASE_URL,
 };
 
