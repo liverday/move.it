@@ -92,7 +92,7 @@ const LeaderBoard: NextPage<LeaderBoardProps> = ({ users }) => {
                                         </div>
                                     </div>
                                     <footer>
-                                        <p><strong>{user.challengesCompleted || 0}</strong> completados</p>
+                                        <p><strong>{user.challengesCompleted || 0}</strong> desafios completos</p>
                                         <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
                                     </footer>
                                 </div>
