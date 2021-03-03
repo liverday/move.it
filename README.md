@@ -75,7 +75,7 @@ yarn dev
 
 # :running: Adicionando novos desafios
 
-É possível criar novos desafios criando novas entradas no arquivo `challenges.json` disponível na raiz desse repositório.
+É possível criar novos desafios criando novas entradas no arquivo `challenges.json`, disponível na raiz desse repositório.
 
 Tente modificá-lo para personalizar ainda mais a experiência!
 
