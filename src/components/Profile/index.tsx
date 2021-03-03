@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
                     checked={themeName === 'dark'}
                     height={10}
                     width={40}
-                    handleDiameter={10}
+                    handleDiameter={20}
                     onChange={toggleTheme}
                     className={styles.themeSwitcher}
                     onColor={theme.blue}
