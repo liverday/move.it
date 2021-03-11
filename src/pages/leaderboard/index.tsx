@@ -117,7 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const users = await database
         .collection('users')
         .find()
-        .sort({ accumulatedExcerience: -1 })
+        .sort({ accumulatedExperience: -1 })
         .limit(10)
         .toArray();
 
