@@ -17,7 +17,7 @@ const CountdownContext = createContext({} as CountdownContextData);
 
 export const CountdownProvider: React.FC = ({ children }) => {
     const { startNewChallenge } = useChallenges();
-    const challengeTime = 0.1 * 60;
+    const challengeTime = 25 * 60;
 
     const [time, setTime] = useState(challengeTime);
     const [isActive, setIsActive] = useState(false);
