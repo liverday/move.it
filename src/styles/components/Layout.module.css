@@ -3,3 +3,9 @@
     width: 100vw;
     display: flex;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-flow: column-reverse nowrap;
+    }
+}

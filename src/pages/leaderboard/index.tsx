@@ -76,28 +76,30 @@ const LeaderBoard: NextPage<LeaderBoardProps> = ({ users }) => {
                         </div>
                     </GreaterThanTablet>
                     <IsMobile>
-                        <section className={styles.cardsContainer}>
-                            {users.map((user, index) => (
-                                <div key={user._id + `-${index}`}>
-                                    <header>
-                                        <strong>{index + 1}</strong>
-                                    </header>
-                                    <div className={styles.userInfoContainer}>
-                                        <img src={user.image} alt={user.name} />
-                                        <div>
-                                            <strong>{user.name}</strong>
-                                            <span>
-                                                <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
-                                            </span>
+                        <div className={styles.cardsWrapper}>
+                            <section className={styles.cardsContainer}>
+                                {users.map((user, index) => (
+                                    <div key={user._id + `-${index}`}>
+                                        <header>
+                                            <strong>{index + 1}</strong>
+                                        </header>
+                                        <div className={styles.userInfoContainer}>
+                                            <img src={user.image} alt={user.name} />
+                                            <div>
+                                                <strong>{user.name}</strong>
+                                                <span>
+                                                    <img src="icons/level.svg" alt="Level Up Icon" />Level {user.level || 1}
+                                                </span>
+                                            </div>
                                         </div>
+                                        <footer>
+                                            <p><strong>{user.challengesCompleted || 0}</strong> desafios completos</p>
+                                            <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
+                                        </footer>
                                     </div>
-                                    <footer>
-                                        <p><strong>{user.challengesCompleted || 0}</strong> desafios completos</p>
-                                        <p><strong>{user.accumulatedExperience || 0}</strong> xp</p>
-                                    </footer>
-                                </div>
-                            ))}
-                        </section>
+                                ))}
+                            </section>
+                        </div>
                     </IsMobile>
                 </div>
             </Layout>
@@ -123,7 +125,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return {
         props: {
-            theme,
+            theme: theme || 'light',
             users: users.map(user => ({
                 ...user,
                 _id: user._id.toString(),

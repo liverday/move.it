@@ -96,7 +96,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      theme,
+      theme: theme || 'light',
       level,
       currentExperience,
       challengesCompleted,

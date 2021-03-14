@@ -73,15 +73,37 @@
 
 @media (max-width: 1000px) {
     .container {
-        width: 4rem;
+        flex-flow: row nowrap;
+        width: 100%;
+        padding: 0.5rem 1rem 4px;
     }
 
     .container header {
-        padding-top: 1rem;
+        padding-top: 0;
+        text-align: start;
+        width: auto;
+    }
+
+    .container main {
+        width: auto;
+        flex-flow: row nowrap;
+    }
+
+    .container main a {
+        padding: 0.5rem;
+    }
+
+    .linkActive::after {
+        right: 0;
+        border-right: 0;
+        border-top: 4px solid var(--blue);
+        border-radius: 5px 5px 0 0;
+        transform: rotateY(180deg) translateY(45px);
+        height: 0;
     }
 
     .container footer {
-        padding-bottom: 1rem;
+        padding-bottom: 0;
     }
 
     .container header svg, .container main a svg, .container footer a svg {
