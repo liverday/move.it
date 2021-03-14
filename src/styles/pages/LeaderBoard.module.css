@@ -143,6 +143,10 @@
 }
 
 @media (max-width: 767px) {
+    .cardsWrapper {
+        padding-bottom: 3.5rem;
+    }
+
     .userInfoContainer {
         margin-top: 1.5rem;
         flex-flow: column nowrap;

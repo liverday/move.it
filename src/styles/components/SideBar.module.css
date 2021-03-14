@@ -76,6 +76,10 @@
         flex-flow: row nowrap;
         width: 100%;
         padding: 0.5rem 1rem 4px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
     .container header {

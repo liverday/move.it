@@ -19,6 +19,12 @@
     grid-template-columns: 1fr 1fr;
 }
 
+@media (max-width: 767px) {
+    .container {
+        padding-bottom: 6rem;
+    }
+}
+
 @media (max-width: 1000px) {
     .container {
         overflow: auto;
