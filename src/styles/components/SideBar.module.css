@@ -71,7 +71,7 @@
     height: 2.5rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
     .container {
         flex-flow: row nowrap;
         width: 100%;
@@ -91,6 +91,10 @@
 
     .container main a {
         padding: 0.5rem;
+    }
+
+    .container main a + a {
+        margin-left: 1rem;
     }
 
     .linkActive::after {

@@ -1,4 +1,6 @@
-module.exports = {
+const withPwa = require('next-pwa');
+
+module.exports = withPwa({
     images: {
         domains: [
             'avatars.githubusercontent.com',
@@ -12,5 +14,10 @@ module.exports = {
         });
 
         return config;
+    },
+    pwa: {
+        disable: process.env.NODE_ENV === 'development',
+        register: true,
+        dest: 'public'
     }
-}
+})

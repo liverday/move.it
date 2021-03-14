@@ -51,7 +51,9 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
     useEffect(() => {
-        Notification.requestPermission();
+        if ('Notification' in window) {
+            Notification.requestPermission();
+        }
     }, []);
 
     useEffect(() => {
