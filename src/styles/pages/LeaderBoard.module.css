@@ -143,10 +143,6 @@
 }
 
 @media (max-width: 767px) {
-    .cardsWrapper {
-        padding-bottom: 3.5rem;
-    }
-
     .userInfoContainer {
         margin-top: 1.5rem;
         flex-flow: column nowrap;
@@ -157,6 +153,10 @@
         margin-left: 0;
         margin-top: 1rem;
         text-align: center;
+    }
+    
+    .cardsContainer {
+        padding-bottom: 3rem;
     }
 
     .cardsContainer > div footer {

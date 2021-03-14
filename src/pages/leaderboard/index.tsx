@@ -78,7 +78,7 @@ const LeaderBoard: NextPage<LeaderBoardProps> = ({ users }) => {
                     <IsMobile>
                         <div className={styles.cardsWrapper}>
                             <section className={styles.cardsContainer}>
-                                {users.map((user, index) => (
+                                {Array.from({ length: 10 }, () => users[0]).map((user, index) => (
                                     <div key={user._id + `-${index}`}>
                                         <header>
                                             <strong>{index + 1}</strong>
