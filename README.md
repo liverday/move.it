@@ -30,6 +30,8 @@
 
 Primeiro você precisa instalar o [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) e o [NodeJS](https://nodejs.org/en/) na sua máquina.
 
+Depois, não se esqueça de deixar o Docker funcionando.  
+
 ### Clonando o repositório
 
 ```bash
@@ -44,6 +46,12 @@ cd move.it
 
 ```bash
 yarn
+```
+
+### Executando o MongoDB
+
+```bash
+$ docker-compose up -d
 ```
 
 ### Definindo as variáveis de ambiente
@@ -61,8 +69,8 @@ SECRET=
 GITHUB_ID=
 GITHUB_SECRET=
 
-# NextAuth Database
-DATABASE_URL=
+# App Database
+DATABASE_URL=mongodb://usuario:senha@localhost:27017
 ```
 
 ### Inicie a aplicação
